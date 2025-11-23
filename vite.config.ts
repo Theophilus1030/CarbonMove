@@ -2,11 +2,13 @@ import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
+
 export default defineConfig({
   build: {
     outDir: "dist",
-    rollupOptions: {
-      external: ['buffer'],
+    // 🟢 修复核心：删除了 rollupOptions.external
+    commonjsOptions: {
+      transformMixedEsModules: true, // 建议开启，有助于兼容 Web3 的老包
     },
   },
   server: {
@@ -15,7 +17,6 @@ export default defineConfig({
   plugins: [
     react(),
     nodePolyfills({
-      // 强制包含 buffer 和 process，这俩是 Web3 项目的命根子
       include: ['buffer', 'process', 'util', 'stream'],
       globals: {
         Buffer: true,
@@ -27,6 +28,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./frontend"),
+      // 这些别名保留着没问题，双重保险
       buffer: 'buffer',
       process: 'process/browser',
       stream: 'stream-browserify',
@@ -41,6 +43,7 @@ export default defineConfig({
     },
   },
   define: {
+    // 这里的 global 定义也保留
     global: 'window',
   },
 });
