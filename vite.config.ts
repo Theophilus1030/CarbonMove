@@ -1,7 +1,7 @@
 import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 export default defineConfig({
   build: {
     outDir: "dist",
@@ -14,6 +14,15 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    nodePolyfills({
+      // 强制包含 buffer 和 process，这俩是 Web3 项目的命根子
+      include: ['buffer', 'process', 'util', 'stream'],
+      globals: {
+        Buffer: true,
+        global: true,
+        process: true,
+      },
+    }),
   ],
   resolve: {
     alias: {
