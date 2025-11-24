@@ -38,12 +38,19 @@ export function CustomWalletSelector() {
         <Button
           onClick={handleDisconnect}
           style={{
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
             border: '1px solid rgba(255, 255, 255, 0.4)',
             color: 'white',
             fontWeight: 500,
             height: '40px',
-            borderRadius: '6px'
+            borderRadius: '6px',
+            backdropFilter: 'blur(10px)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
           }}
         >
           {account.address.toString().slice(0, 6)}...{account.address.toString().slice(-4)}
@@ -52,12 +59,19 @@ export function CustomWalletSelector() {
         <Button
           onClick={() => setModalOpen(true)}
           style={{
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
             border: '1px solid rgba(255, 255, 255, 0.4)',
             color: 'white',
             fontWeight: 500,
             height: '40px',
-            borderRadius: '6px'
+            borderRadius: '6px',
+            backdropFilter: 'blur(10px)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
           }}
         >
           Connect Wallet
@@ -87,7 +101,16 @@ export function CustomWalletSelector() {
                 onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
               >
                 <List.Item.Meta
-                  avatar={<Avatar src={wallet.icon} size={40} />}
+                  avatar={
+                    <Avatar 
+                      src={wallet.icon} 
+                      size={40}
+                      style={{
+                        backgroundColor: '#f0f0f0',
+                        padding: '4px'
+                      }}
+                    />
+                  }
                   title={<span style={{ fontSize: '16px', fontWeight: 500 }}>{wallet.name}</span>}
                   description={`Ready to connect`}
                 />
