@@ -1,0 +1,17 @@
+[package]
+name = "CarbonMove"
+version = "1.0.0"
+upgrade_policy = "compatible"
+
+[dependencies]
+# 引入 Aptos 官方框架 (包含了 Object, FungibleAsset 等核心标准)
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-framework.git", rev = "main", subdir = "aptos-framework" }
+# 引入 Aptos Token Objects (专门用于 RWA/NFT 资产)
+AptosTokenObjects = { git = "https://github.com/aptos-labs/aptos-framework.git", rev = "main", subdir = "aptos-token-objects" }
+
+[addresses]
+# 这里引用 default，编译时会自动使用你刚才初始化的 0xece4... 地址
+CarbonMove = "0x7f7c9606d5fa8cae3f72a762c15f93a7f71876e5ddeb9d8317f0d302508713c2"
+std = "0x1"
+aptos_framework = "0x1"
+aptos_token_objects = "0x4"

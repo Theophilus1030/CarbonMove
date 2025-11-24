@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Layout, Row, Col, Button, Input, Card, Typography, message, Modal, Tag, Select, Divider } from "antd";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
-import { WalletSelector } from "@aptos-labs/wallet-adapter-ant-design";
+import { CustomWalletSelector } from "@/components/CustomWalletSelector";
 import "@aptos-labs/wallet-adapter-ant-design/dist/index.css";
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
 
@@ -282,6 +282,7 @@ function App() {
             object-fit: cover;
             border-bottom: 1px solid #f0f0f0;
         }
+
       `}</style>
 
       <Header style={headerStyle}>
@@ -290,7 +291,7 @@ function App() {
           <Tag color="rgba(255,255,255,0.2)" style={{color: 'white', border: 'none', marginRight: 0}}>V3</Tag>
         </div>
         <div id="wallet-btn-container" style={{ marginLeft: 'auto' }}>
-            <WalletSelector />
+            <CustomWalletSelector />
         </div>
       </Header>
 
